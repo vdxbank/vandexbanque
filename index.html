@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>VantexBanque - Placements Simples et Sûrs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">💰 VantexBanque</div>
+
+            <!-- Burger Menu pour mobile -->
+            <div class="burger-menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links">
+                <a href="#accueil" onclick="closeMenu()">Accueil</a>
+                <a href="#about" onclick="closeMenu()">À propos</a>
+                <a href="#comment" onclick="closeMenu()">Comment ça marche</a>
+                <a href="#plans" class="nav-btn" onclick="scrollToPlans(); closeMenu();">Voir les offres</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Section Accueil -->
+        <section id="accueil" class="hero">
+            <div class="hero-content">
+                <h1>Investissez simplement,<br>récoltez sereinement en 24h</h1>
+                <p>Des plans d'investissement clairs et transparents, accessibles à tous en 24h</p>
+                <a href="#plans" class="nav-btn" onclick="scrollToPlans(); closeMenu();">Investir maintenant</a>
+            </div>
+        </section>
+
+        <!-- Section À propos -->
+        <section id="about" class="about">
+            <h2 class="section-title">Pourquoi nous choisir ?</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Virement instantané</h3>
+                    <p><b>VantexBanque</b> est un établissement bancaire spécialisé dans l’investissement et le financement en ligne et remboursable à long terme, quelle que soit la nature de votre projet. Nous proposons également des prêts immobiliers, des financements scolaires ainsi que des programmes d’accompagnement adaptés à vos besoins...</p>
+                    <ul class="features-list">
+                        <li>Des plans adaptés à tous les budgets</li>
+                        <li>Processus 100% digital et sécurisé</li>
+                        <li>Support client disponible 7j/7</li>
+                        <li>Retraits sans pénalités</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Comment ça marche -->
+        <section id="comment" class="how-it-works">
+            <div class="how-container">
+                <h2 class="section-title">Comment ça marche ?</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Choisissez votre plan</h3>
+                        <p>Sélectionnez le plan qui correspond à vos objectifs parmi nos 3 formules</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Remplissez le formulaire</h3>
+                        <p>Laissez-nous vos coordonnées en 2 minutes chrono</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Finalisez le contrat</h3>
+                        <p>Un conseiller vous guide pour finaliser votre investissement</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Plans d'investissement (OFFRES) -->
+        <section id="plans" class="plans">
+            <h2 class="section-title">Nos offres d'investissement</h2>
+            <p class="plans-subtitle">Des formules simples et adaptées à tous les profils</p>
+
+            <div class="cards-container">
+                <!-- Plan Basic -->
+                <div class="card" onclick="openForm('Plan Basic')">
+                    <div class="card-header">
+                        <h3>BASIC</h3>
+                        <div class="plan-price">
+                            <span class="amount">5 500 £</span>
+                        </div>
+                    </div>
+
+                    <div class="plan-invest">
+                        <p>Montant à investir</p>
+                        <div class="invest-amount">150 £</div>
+                    </div>
+
+                    <button class="card-btn">Choisir Basic</button>
+                </div>
+
+                <!-- Plan Premium -->
+                <div class="card popular" onclick="openForm('Plan Premium')">
+                    <div class="card-header">
+                        <h3>PREMIUM</h3>
+                        <div class="plan-price">
+                            <span class="amount">10 000 £</span>
+                        </div>
+                    </div>
+
+                    <div class="plan-invest">
+                        <p>Montant à investir</p>
+                        <div class="invest-amount">400 £</div>
+                    </div>
+
+                    <button class="card-btn">Choisir Premium</button>
+                </div>
+
+                <!-- Plan Elite -->
+                <div class="card" onclick="openForm('Plan Elite')">
+                    <div class="card-header">
+                        <h3>ELITE</h3>
+                        <div class="plan-price">
+                            <span class="amount">15 000 £</span>
+                        </div>
+                    </div>
+
+                    <div class="plan-invest">
+                        <p>Montant à investir</p>
+                        <div class="invest-amount">500 £</div>
+                    </div>
+
+                    <button class="card-btn">Choisir Elite</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Témoignages avec un seul slider -->
+        <section class="testimonials">
+            <div class="testimonials-container">
+                <h2 class="section-title">Ce que disent nos clients !</h2>
+                
+                <!-- Témoignages textes -->
+                <div class="testimonials-grid">
+                    <div class="testimonial">
+                        <p>"J'ai commencé avec le plan Premium, et je suis passé en Elite après 3 mois. Les résultats sont au rendez-vous !"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MS</div>
+                            <div class="author-info">
+                                <h4>Marie S.</h4>
+                                <p>Investisseuse Premium</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial">
+                        <p>"Processus ultra simple. En 5 minutes j'avais finalisé mon investissement. Le support WhatsApp est très réactif."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">PL</div>
+                            <div class="author-info">
+                                <h4>Pierre L.</h4>
+                                <p>Investisseur Elite</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial">
+                        <p>"Je cherchais un placement simple sans prise de tête. VantexBanque correspond parfaitement à mes attentes."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JD</div>
+                            <div class="author-info">
+                                <h4>Jean D.</h4>
+                                <p>Investisseur Basic</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider unique avec vidéos et images mélangées -->
+                <div class="testimonials-media">
+                    <h3 class="media-title">Témoignages vidéo et images</h3>
+                    <div class="slider-container">
+                        <button class="slider-btn prev-btn" onclick="slideMedia('prev')">❮</button>
+                        <div class="media-slider" id="mediaSlider">
+                            <div class="slider-track" id="mediaTrack">
+                                <!-- Vidéos -->
+                                <div class="media-item video-item">
+                                    <video width="320" height="400" controls poster="couv1.png">
+                                        <source src="Tem1.mp4" type="video/mp4">
+                                        Votre navigateur ne supporte pas la lecture vidéo.
+                                    </video>
+                                    <p class="media-label">Témoignage vidéo 1</p>
+                                </div>
+                                
+                                <div class="media-item video-item">
+                                    <video width="320" height="400" controls poster="couv2.png">
+                                        <source src="Tem2.mp4" type="video/mp4">
+                                        Votre navigateur ne supporte pas la lecture vidéo.
+                                    </video>
+                                    <p class="media-label">Témoignage vidéo 2</p>
+                                </div>
+                                
+                                <div class="media-item video-item">
+                                    <video width="320" height="400" controls poster="couv3.png">
+                                        <source src="Tem3.mp4" type="video/mp4">
+                                        Votre navigateur ne supporte pas la lecture vidéo.
+                                    </video>
+                                    <p class="media-label">Témoignage vidéo 3</p>
+                                </div>
+                                
+                                <!-- Images -->
+                                <div class="media-item image-item">
+                                    <img src="img1.jpg" alt="Témoignage client 1" loading="lazy" onclick="zoomImage(this)">
+                                    <p class="media-label">Capture d'écran 1</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="slider-btn next-btn" onclick="slideMedia('next')">❯</button>
+                    </div>
+                </div>
+            </div>
+        </section> 
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <a href="#plans" class="nav-btn" onclick="scrollToPlans(); closeMenu();">Investir maintenant</a>
+            <div class="footer-col">
+                <h4>VantexBanque</h4>
+                <p>L'investissement simple et transparent pour tous</p>
+            </div>
+            <div class="footer-col">
+                <h4>Liens utiles</h4>
+                <p><a href="#accueil">Accueil</a></p>
+                <p><a href="#about">À propos</a></p>
+                <p><a href="#plans">Nos offres</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>📧 vantexbanque18@gmail.com</p>
+                <p>📞 +33 7 56 91 16 86</p>
+            </div>
+            <div class="footer-col">
+                <h4>Légal</h4>
+                <p>Mentions légales</p>
+                <p>CGU</p>
+                <p>Politique de confidentialité</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 VantexBanque. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Formulaire -->
+    <div id="formModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeForm()">&times;</span>
+            <h2>Rejoindre le plan</h2>
+            <form id="investmentForm" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" required placeholder="Votre nom">
+                </div>
+
+                <div class="form-group">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" required placeholder="Votre prénom">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required placeholder="votre@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="plan">Plan d'investissement</label>
+                    <select id="plan" required>
+                        <option value="">Sélectionnez un plan</option>
+                        <option value="Basic - 5 500£">Basic - 150 £ d'investissement</option>
+                        <option value="Premium - 10 000£">Premium - 400 £ d'investissement</option>
+                        <option value="Elite - 15 000£">Elite - 500 £ d'investissement</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="paiement">Moyen de paiement</label>
+                    <select id="paiement" required>
+                        <option value="">Sélectionnez</option>
+                        <option value="Carte bancaire">💳 Carte bancaire</option>
+                        <option value="Virement">🏦 Virement bancaire</option>
+                        <option value="PayPal">📱 PayPal</option>
+                        <option value="Crypto">₿ Crypto-monnaie</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">SOUMETTRE</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Zoom Image -->
+    <div id="imageZoomModal" class="image-zoom-modal" onclick="closeZoomModal()">
+        <span class="close-zoom">&times;</span>
+        <img id="zoomedImage" class="zoomed-image" src="" alt="Image agrandie">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

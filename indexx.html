@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>VantexBanque - Placements Simples et Sûrs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #f7fafc;
+        }
+
+        /* Header avec navigation - version semi-transparente */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            z-index: 1001;
+        }
+
+        /* Menu burger pour mobile */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+        }
+
+        .burger-menu span {
+            width: 25px;
+            height: 3px;
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            margin: 3px 0;
+            transition: 0.4s;
+            border-radius: 3px;
+        }
+
+        /* Animation du burger */
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: #a463f5;
+        }
+
+        /* Bouton dans le header vers les offres - STYLISÉ */
+        .nav-btn {
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            color: white !important;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            transition: all 0.3s !important;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            white-space: nowrap; 
+            text-decoration: none;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.4);
+            background: linear-gradient(135deg, #7c6cf7, #b574ff);
+            color: white !important;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        /* Section Accueil / Hero */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #a463f5 100%);
+            padding: 100px 20px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            color: white;
+            -webkit-text-fill-color: white;
+            background: none;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Section À propos */
+        .about {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #2d3748;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #6c5ce7;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #4a5568;
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4a5568;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: #a463f5;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #f0f5fa, #e6edf5);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .about-image .placeholder-icon {
+            font-size: 8rem;
+            line-height: 1;
+            filter: drop-shadow(0 10px 20px rgba(108, 92, 231, 0.2));
+        }
+
+        /* Section Comment ça marche */
+        .how-it-works {
+            background: #edf2f7;
+            padding: 80px 20px;
+            border-top: 1px solid rgba(108, 92, 231, 0.1);
+            border-bottom: 1px solid rgba(108, 92, 231, 0.1);
+        }
+
+        .how-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(108, 92, 231, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(108, 92, 231, 0.15);
+            border-color: #a463f5;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            margin-bottom: 15px;
+            color: #6c5ce7;
+        }
+
+        .step p {
+            color: #4a5568;
+        }
+
+        /* Section Plans d'investissement */
+        .plans {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+            scroll-margin-top: 100px;
+        }
+
+        .plans-subtitle {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(108, 92, 231, 0.2);
+            border-color: #a463f5;
+        }
+
+        .card.popular {
+            border: 2px solid #a463f5;
+            background: linear-gradient(135deg, #ffffff, #faf5ff);
+        }
+
+        .card.popular::before {
+            content: '🏆 RECOMMANDÉ';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            color: white;
+            padding: 5px 40px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .card-header h3 {
+            font-size: 2rem;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .plan-price .amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #6c5ce7;
+            display: block;
+            text-shadow: 0 0 20px rgba(108, 92, 231, 0.2);
+        }
+
+        .plan-invest {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .plan-invest p {
+            color: #4a5568;
+            margin-bottom: 5px;
+        }
+
+        .invest-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #a463f5;
+        }
+
+        .plan-details {
+            margin: 25px 0;
+            padding: 0 15px;
+        }
+
+        .plan-details p {
+            margin-bottom: 8px;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-btn {
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        /* Section Témoignages */
+        .testimonials {
+            background: #edf2f7;
+            padding: 80px 20px;
+            border-top: 1px solid rgba(108, 92, 231, 0.1);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+            border: 1px solid rgba(108, 92, 231, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: #a463f5;
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: serif;
+        }
+
+        .testimonial p {
+            margin-bottom: 20px;
+            color: #4a5568;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        /* Modal Formulaire */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            animation: slideDown 0.3s ease-out;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #a0aec0;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #a463f5;
+        }
+
+        .modal h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2d3748;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+            color: #2d3748;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #a463f5;
+            box-shadow: 0 0 10px rgba(164, 99, 245, 0.2);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: #cbd5e0;
+            padding: 60px 20px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 20px;
+            color: #a463f5;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #cbd5e0;
+            text-decoration: none;
+            line-height: 2;
+        }
+
+        .footer-col a:hover {
+            color: #a463f5;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #a0aec0;
+        }
+
+        /* ===== RESPONSIVE DESIGN AMÉLIORÉ ===== */
+        @media screen and (max-width: 768px) {
+            /* Afficher le burger menu */
+            .burger-menu {
+                display: flex;
+            }
+
+            /* Cacher les liens par défaut sur mobile */
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                z-index: 1000;
+                padding: 20px;
+            }
+
+            /* Afficher le menu quand actif */
+            .nav-links.active {
+                display: flex;
+            }
+
+            /* Style des liens en version mobile */
+            .nav-links a {
+                font-size: 1.5rem;
+                color: #2d3748;
+                padding: 15px;
+                width: 100%;
+                text-align: center;
+                border-radius: 10px;
+            }
+
+            .nav-links a:hover {
+                background: rgba(108, 92, 231, 0.1);
+            }
+
+            /* Bouton dans le menu mobile - BIEN VISIBLE */
+            .nav-links .nav-btn {
+                font-size: 1.3rem;
+                padding: 15px 40px;
+                margin-top: 20px;
+                width: auto;
+                min-width: 250px;
+                background: linear-gradient(135deg, #6c5ce7, #a463f5);
+                border: 2px solid rgba(255, 255, 255, 0.2);
+                color: white !important;
+            }
+
+            /* Ajustements hero */
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            /* Ajustements about */
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-text h3 {
+                font-size: 1.8rem;
+            }
+
+            /* Ajustements steps */
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .step {
+                padding: 25px;
+            }
+
+            /* Ajustements cards */
+              display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            z-index: 1001;
+        }
+
+        /* Menu burger pour mobile */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+        }
+
+        .burger-menu span {
+            width: 25px;
+            height: 3px;
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            margin: 3px 0;
+            transition: 0.4s;
+            border-radius: 3px;
+        }
+
+        /* Animation du burger */
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: #a463f5;
+        }
+
+        /* Bouton dans le header vers les offres - STYLISÉ */
+        .nav-btn {
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            color: white !important;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            transition: all 0.3s !important;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            white-space: nowrap; 
+            text-decoration: none;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.4);
+            background: linear-gradient(135deg, #7c6cf7, #b574ff);
+            color: white !important;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        /* Section Accueil / Hero */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #a463f5 100%);
+            padding: 100px 20px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            color: white;
+            -webkit-text-fill-color: white;
+            background: none;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Section À propos */
+        .about {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #2d3748;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #6c5ce7;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #4a5568;
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4a5568;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: #a463f5;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #f0f5fa, #e6edf5);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .about-image .placeholder-icon {
+            font-size: 8rem;
+            line-height: 1;
+            filter: drop-shadow(0 10px 20px rgba(108, 92, 231, 0.2));
+        }
+
+        /* Section Comment ça marche */
+        .how-it-works {
+            background: #edf2f7;
+            padding: 80px 20px;
+            border-top: 1px solid rgba(108, 92, 231, 0.1);
+            border-bottom: 1px solid rgba(108, 92, 231, 0.1);
+        }
+
+        .how-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(108, 92, 231, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(108, 92, 231, 0.15);
+            border-color: #a463f5;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            margin-bottom: 15px;
+            color: #6c5ce7;
+        }
+
+        .step p {
+            color: #4a5568;
+        }
+
+        /* Section Plans d'investissement */
+        .plans {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+            scroll-margin-top: 100px;
+        }
+
+        .plans-subtitle {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(108, 92, 231, 0.2);
+            border-color: #a463f5;
+        }
+
+        .card.popular {
+            border: 2px solid #a463f5;
+            background: linear-gradient(135deg, #ffffff, #faf5ff);
+        }
+
+        .card.popular::before {
+            content: '🏆 RECOMMANDÉ';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            color: white;
+            padding: 5px 40px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .card-header h3 {
+            font-size: 2rem;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .plan-price .amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #6c5ce7;
+            display: block;
+            text-shadow: 0 0 20px rgba(108, 92, 231, 0.2);
+        }
+
+        .plan-invest {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .plan-invest p {
+            color: #4a5568;
+            margin-bottom: 5px;
+        }
+
+        .invest-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #a463f5;
+        }
+
+        .plan-details {
+            margin: 25px 0;
+            padding: 0 15px;
+        }
+
+        .plan-details p {
+            margin-bottom: 8px;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-btn {
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        /* Section Témoignages */
+        .testimonials {
+            background: #edf2f7;
+            padding: 80px 20px;
+            border-top: 1px solid rgba(108, 92, 231, 0.1);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+            border: 1px solid rgba(108, 92, 231, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: #a463f5;
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: serif;
+        }
+
+        .testimonial p {
+            margin-bottom: 20px;
+            color: #4a5568;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        /* Modal Formulaire */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            animation: slideDown 0.3s ease-out;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #a0aec0;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #a463f5;
+        }
+
+        .modal h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2d3748;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+            color: #2d3748;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #a463f5;
+            box-shadow: 0 0 10px rgba(164, 99, 245, 0.2);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: #cbd5e0;
+            padding: 60px 20px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 20px;
+            color: #a463f5;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #cbd5e0;
+            text-decoration: none;
+            line-height: 2;
+        }
+
+        .footer-col a:hover {
+            color: #a463f5;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #a0aec0;
+        }
+
+        /* ===== RESPONSIVE DESIGN AMÉLIORÉ ===== */
+        @media screen and (max-width: 768px) {
+            /* Afficher le burger menu */
+            .burger-menu {
+                display: flex;
+            }
+
+            /* Cacher les liens par défaut sur mobile */
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                z-index: 1000;
+                padding: 20px;
+            }
+
+            /* Afficher le menu quand actif */
+            .nav-links.active {
+                display: flex;
+            }
+
+            /* Style des liens en version mobile */
+            .nav-links a {
+                font-size: 1.5rem;
+                color: #2d3748;
+                padding: 15px;
+                width: 100%;
+                text-align: center;
+                border-radius: 10px;
+            }
+
+            .nav-links a:hover {
+                background: rgba(108, 92, 231, 0.1);
+            }
+
+            /* Bouton dans le menu mobile - BIEN VISIBLE */
+            .nav-links .nav-btn {
+                font-size: 1.3rem;
+                padding: 15px 40px;
+                margin-top: 20px;
+                width: auto;
+                min-width: 250px;
+                background: linear-gradient(135deg, #6c5ce7, #a463f5);
+                border: 2px solid rgba(255, 255, 255, 0.2);
+                color: white !important;
+            }
+
+            /* Ajustements hero */
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            /* Ajustements about */
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-text h3 {
+                font-size: 1.8rem;
+            }
+
+            /* Ajustements steps */
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .step {
+                padding: 25px;
+            }
+
+            /* Ajustements cards */
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            .plan-price .amount {
+                font-size: 2.5rem;
+            }
+
+            .invest-amount {
+                font-size: 2rem;
+            }
+
+            /* Ajustements témoignages */
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            /* Ajustements footer */
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+
+            /* Ajustements modal */
+            .modal-content {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+
+            .modal h2 {
+                font-size: 1.5rem;
+            }
+
+            input, select {
+                padding: 10px;
+            }
+        }
+
+        /* Très petits écrans */
+        @media screen and (max-width: 480px) {
+            nav {
+                padding: 0.8rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                padding: 80px 15px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .nav-links .nav-btn {
+                min-width: 200px;
+                font-size: 1.1rem;
+                padding: 12px 30px;
+            }
+        }
+
+        /* Empêcher le scroll quand le menu est ouvert */
+        body.menu-open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">💰 InvestEase</div>
+
+            <!-- Burger Menu pour mobile -->
+            <div class="burger-menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links">
+                <a href="#accueil" onclick="closeMenu()">Accueil</a>
+                <a href="#about" onclick="closeMenu()">À propos</a>
+                <a href="#comment" onclick="closeMenu()">Comment ça marche</a>
+                <a href="#plans" class="nav-btn" onclick="scrollToPlans(); closeMenu();">Voir les offres</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Section Accueil -->
+        <section id="accueil" class="hero">
+            <div class="hero-content">
+                <h1>Investissez simplement,<br>récoltez sereinement en 24h</h1>
+                <p>Des plans d'investissement clairs et transparents, accessibles à tous en 24h</p>
+            </div>
+        </section>
+
+        <!-- Section À propos -->
+        <section id="about" class="about">
+            <h2 class="section-title">Pourquoi nous choisir ?</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>L'investissement simplifié</h3>
+                    <p>Chez InvestEase, nous croyons que l'investissement doit être accessible à tous. Pas de jargon compliqué, pas de frais cachés : juste des plans clairs et des rendements transparents.</p>
+                    <ul class="features-list">
+                        <li>Des plans adaptés à tous les budgets</li>
+                        <li>Processus 100% digital et sécurisé</li>
+                        <li>Support client disponible 7j/7</li>
+                        <li>Retraits sans pénalités</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Comment ça marche -->
+        <section id="comment" class="how-it-works">
+            <div class="how-container">
+                <h2 class="section-title">Comment ça marche ?</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Choisissez votre plan</h3>
+                        <p>Sélectionnez le plan qui correspond à vos objectifs parmi nos 3 formules</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Remplissez le formulaire</h3>
+                        <p>Laissez-nous vos coordonnées en 2 minutes chrono</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Finalisez le contrat</h3>
+                        <p>Un conseiller vous guide pour finaliser votre investissement</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Plans d'investissement (OFFRES) -->
+        <section id="plans" class="plans">
+            <h2 class="section-title">Nos offres d'investissement</h2>
+            <p class="plans-subtitle">Des formules simples et adaptées à tous les profils</p>
+
+            <div class="cards-container">
+                <!-- Plan Basic -->
+                <div class="card" onclick="openForm('Plan Basic')">
+                    <div class="card-header">
+                        <h3>BASIC</h3>
+                        <div class="plan-price">
+                            <span class="amount">5 000 £</span>
+                        </div>
+                    </div>
+
+                    <div class="plan-invest">
+                        <p>Montant à investir</p>
+                        <div class="invest-amount">499 £</div>
+                    </div>
+
+                    <button class="card-btn">Choisir Basic</button>
+                </div>
+
+                <!-- Plan Premium -->
+                <div class="card popular" onclick="openForm('Plan Premium')">
+                    <div class="card-header">
+                        <h3>PREMIUM</h3>
+                        <div class="plan-price">
+                            <span class="amount">15 000 £</span>
+                        </div>
+                    </div>
+
+                    <div class="plan-invest">
+                        <p>Montant à investir</p>
+                        <div class="invest-amount">1 199 £</div>
+                    </div>
+
+                    <button class="card-btn">Choisir Premium</button>
+                </div>
+
+                <!-- Plan Elite -->
+                <div class="card" onclick="openForm('Plan Elite')">
+                    <div class="card-header">
+                        <h3>ELITE</h3>
+                        <div class="plan-price">
+                            <span class="amount">50 000 £</span>
+                        </div>
+                    </div>
+
+                    <div class="plan-invest">
+                        <p>Montant à investir</p>
+                        <div class="invest-amount">3 999 £</div>
+                    </div>
+
+                    <button class="card-btn">Choisir Elite</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Témoignages -->
+        <section class="testimonials">
+            <div class="testimonials-container">
+                <h2 class="section-title">Ils nous font confiance</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial">
+                        <p>"J'ai commencé avec le plan Premium, et je suis passé en Elite après 3 mois. Les résultats sont au rendez-vous !"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MS</div>
+                            <div class="author-info">
+                                <h4>Marie S.</h4>
+                                <p>Investisseur Basic</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial">
+                        <p>"Processus ultra simple. En 5 minutes j'avais finalisé mon investissement. Le support WhatsApp est très réactif."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">PL</div>
+                            <div class="author-info">
+                                <h4>Pierre L.</h4>
+                                <p>Investisseur Premium</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial">
+                        <p>"Je cherchais un placement simple sans prise de tête. InvestEase correspond parfaitement à mes attentes."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JD</div>
+                            <div class="author-info">
+                                <h4>Jean D.</h4>
+                                <p>Investisseur Elite</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>InvestEase</h4>
+                <p>L'investissement simple et transparent pour tous</p>
+            </div>
+            <div class="footer-col">
+                <h4>Liens utiles</h4>
+                <p><a href="#accueil">Accueil</a></p>
+                <p><a href="#about">À propos</a></p>
+                <p><a href="#plans">Nos offres</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>📧 contact@investease.com</p>
+                <p>📞 +33 7 56 91 16 86</p>
+            </div>
+            <div class="footer-col">
+                <h4>Légal</h4>
+                <p>Mentions légales</p>
+                <p>CGU</p>
+                <p>Politique de confidentialité</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 InvestEase. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Formulaire -->
+    <div id="formModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeForm()">&times;</span>
+            <h2>Rejoindre le plan</h2>
+            <form id="investmentForm" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" required placeholder="Votre nom">
+                </div>
+
+                <div class="form-group">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" required placeholder="Votre prénom">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required placeholder="votre@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="plan">Plan d'investissement</label>
+                    <select id="plan" required>
+                        <option value="">Sélectionnez un plan</option>
+                        <option value="Basic - 5 000£">Basic - 499 £ d'investissement</option>
+                        <option value="Premium - 15 000£">Premium - 1 199 £ d'investissement</option>
+                        <option value="Elite - 50 000£">Elite - 3 999 £ d'investissement</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="paiement">Moyen de paiement</label>
+                    <select id="paiement" required>
+                        <option value="">Sélectionnez</option>
+                        <option value="Carte bancaire">💳 Carte bancaire</option>
+                        <option value="Virement">🏦 Virement bancaire</option>
+                        <option value="PayPal">📱 PayPal</option>
+                        <option value="Crypto">₿ Crypto-monnaie</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">SOUMETTRE</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let selectedPlan = '';
+
+        // Fonction pour basculer le menu mobile
+        function toggleMenu() {
+            const burger = document.querySelector('.burger-menu');
+            const navLinks = document.querySelector('.nav-links');
+            const body = document.body;
+
+            burger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        }
+
+        // Fonction pour fermer le menu mobile
+        function closeMenu() {
+            const burger = document.querySelector('.burger-menu');
+            const navLinks = document.querySelector('.nav-links');
+            const body = document.body;
+
+            burger.classList.remove('active');
+            navLinks.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
+
+        function scrollToPlans() {
+            document.getElementById('plans').scrollIntoView({ behavior: 'smooth' });
+            closeMenu(); // Fermer le menu mobile après le clic
+        }
+
+        function openForm(planName) {
+            selectedPlan = planName;
+            const planSelect = document.getElementById('plan');
+
+            if (planName === 'Plan Basic') planSelect.value = 'Basic - 5 000£';
+            else if (planName === 'Plan Premium') planSelect.value = 'Premium - 15 000£';
+            else if (planName === 'Plan Elite') planSelect.value = 'Elite - 50 000£';
+
+            document.getElementById('formModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            closeMenu(); // Fermer le menu mobile si ouvert
+        }
+
+        function closeForm() {
+            document.getElementById('formModal').style.display = 'none';
+            document.getElementById('investmentForm').reset();
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('formModal');
+            if (event.target == modal) {
+                closeForm();
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeForm();
+            }
+        });
+
+        // Fermer le menu mobile si on clique sur un lien
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            const nom = document.getElementById('nom').value;
+            const prenom = document.getElementById('prenom').value;
+            const email = document.getElementById('email').value;
+            const plan = document.getElementById('plan').value;
+            const paiement = document.getElementById('paiement').value;
+
+            let montant = '499£';
+            if (plan.includes('Premium') || plan.includes('15 000')) montant = '1 199 £';
+            else if (plan.includes('Elite') || plan.includes('50 000')) montant = '3 999 £';
+
+            const message = `*🔔 NOUVELLE DEMANDE D'INVESTISSEMENT - InvestEase*%0A%0A` +
+                          `*👤 INFORMATIONS PERSONNELLES*%0A` +
+                          `Nom complet : ${prenom} ${nom}%0A` +
+                          `📧 Email : ${email}%0A` +
+                          `*💰 DÉTAILS DE L'INVESTISSEMENT*%0A` +
+                          `Plan choisi : ${plan}%0A` +
+                          `Montant à investir : ${montant}%0A` +
+                          `💳 Moyen de paiement : ${paiement}%0A%0A` +
+                          `*📅 DATE DE LA DEMANDE*%0A` +
+                          `${new Date().toLocaleString('fr-FR')}%0A%0A` +
+                          `_🔔 Nouvel investisseur potentiel - À contacter dans les plus brefs délais_`;
+
+            const whatsappNumber = "33756911686";
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+            window.open(whatsappUrl, '_blank');
+            closeForm();
+
+            alert('✅ Votre demande a été prise en compte ! Vous allez être redirigé vers WhatsApp pour finaliser votre investissement avec un conseiller.');
+        }
+    </script>
+</body>
+</html>
