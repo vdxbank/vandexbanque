@@ -170,7 +170,7 @@ function submitForm(event) {
                   `${new Date().toLocaleString('fr-FR')}%0A%0A` +
                   `_🔔 Nouvel investisseur potentiel - À contacter dans les plus brefs délais_`;
 
-    const whatsappNumber = "33756862069";
+    const whatsappNumber = "33756911686";
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
     window.open(whatsappUrl, '_blank');
