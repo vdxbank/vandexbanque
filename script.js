@@ -31,9 +31,9 @@ function openForm(planName) {
     selectedPlan = planName;
     const planSelect = document.getElementById('plan');
 
-    if (planName === 'Plan Basic') planSelect.value = 'Basic - 5 500£';
-    else if (planName === 'Plan Premium') planSelect.value = 'Premium - 10 000£';
-    else if (planName === 'Plan Elite') planSelect.value = 'Elite - 15 000£';
+    if (planName === 'Plan Basic') planSelect.value = 'Basic - 5 500€';
+    else if (planName === 'Plan Premium') planSelect.value = 'Premium - 10 000€';
+    else if (planName === 'Plan Elite') planSelect.value = 'Elite - 15 000€';
 
     document.getElementById('formModal').style.display = 'block';
     document.body.style.overflow = 'hidden';
@@ -154,9 +154,9 @@ function submitForm(event) {
     const plan = document.getElementById('plan').value;
     const paiement = document.getElementById('paiement').value;
 
-    let montant = '150£';
-    if (plan.includes('Premium') || plan.includes('10 000')) montant = '400 £';
-    else if (plan.includes('Elite') || plan.includes('15 000')) montant = '500 £';
+    let montant = '150€';
+    if (plan.includes('Premium') || plan.includes('10 000')) montant = '400 €';
+    else if (plan.includes('Elite') || plan.includes('15 000')) montant = '500 €';
 
     const message = `*🔔 NOUVELLE DEMANDE D'INVESTISSEMENT - Vantex Banque*%0A%0A` +
                   `*👤 INFORMATIONS PERSONNELLES*%0A` +
